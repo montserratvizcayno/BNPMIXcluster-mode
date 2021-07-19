@@ -549,14 +549,14 @@ MIXclustering <- function( Y,
   ##### End: Initializing the chain #####
   
   #####
-  #mu_Z_sim <- array(NA,dim=c(n,n_q,n_iter))
-  #sigma_Z_sim <- array(NA,dim=c(n_q,n_q,n_iter))
+  mu_Z_sim <- array(NA,dim=c(n,n_q,n_iter))
+  sigma_Z_sim <- array(NA,dim=c(n_q,n_q,n_iter))
   mu_star_map_sim <- data.frame(iter_0=1:n)
   #colnames(mu_star_map_sim) <- paste("iter_",1:ncol(mu_star_map_sim),sep="")
   #rownames(mu_star_map_sim) <- NULL
   
-  #mu_star_n_r_sim <- list()
-  #mu_star_probs <- array(dim=c(n,n+1,n_iter))
+  mu_star_n_r_sim <- list()
+  mu_star_probs <- array(dim=c(n,n+1,n_iter))
   
   ##### Monitoring acceptance rate for MH #####
   
@@ -652,7 +652,7 @@ MIXclustering <- function( Y,
       prob_0 <- D_0 / sum( D_0, D_values )
       prob_values <- D_values / sum( D_0, D_values )
       
-      #mu_star_probs[i,1+0:length(prob_values),iter_i] <- c(prob_0,prob_values)
+      mu_star_probs[i,1+0:length(prob_values),iter_i] <- c(prob_0,prob_values)
       
       # simulating mu #
       mu_class <- which( is.element( rmultinom(n=1,size=1,prob=c(prob_0,prob_values)), 1 ) )
@@ -972,10 +972,10 @@ MIXclustering <- function( Y,
     
     ### Storing simulation values for each iteration ###
     
-    #mu_Z_sim[,,iter_i] <- mu_star[mu_star_map,]
-    #sigma_Z_sim[,,iter_i] <- sigma_Z
+    mu_Z_sim[,,iter_i] <- mu_star[mu_star_map,]
+    sigma_Z_sim[,,iter_i] <- sigma_Z
     mu_star_map_sim[,paste("iter_",iter_i,sep="")] <- mu_star_map
-    #mu_star_n_r_sim[[iter_i]] <- mu_star_n_r
+    mu_star_n_r_sim[[iter_i]] <- mu_star_n_r
     
     if(keep_param_chains) {
       Lambda_sim[iter_i,] <- diag(Lambda)
