@@ -68,25 +68,25 @@ plot.MIXcluster <- function( x,
     }
     
     if( (is.element("all",chain.obj)|is.element("n.cluster",chain.obj)) ) {
-      plot_mcmc(x$MC.values$n.clusters,main="Number of clusters",ylab="Number of clusters",xlab="iteration")
+      plot_mcmc(x$MC.values$n.clusters,main="Número de clusters",ylab="Número de clusters",xlab="Iteración")
     }
     if( (is.element("all",chain.obj)|is.element("a",chain.obj)) ) {
-      plot_mcmc(x$MC.values$a,main="a",ylab="a",xlab="iteration")
+      plot_mcmc(x$MC.values$a,main="a",ylab="a",xlab="Iteración")
     }
     if( (is.element("all",chain.obj)|is.element("b",chain.obj)) ) {
-      plot_mcmc(x$MC.values$b,main="b",ylab="b",xlab="iteration")
+      plot_mcmc(x$MC.values$b,main="b",ylab="b",xlab="Iteración")
     }
     if( (is.element("all",chain.obj)|is.element("Omega",chain.obj)) ) {
       for(i in 1:(dim(x$MC.values$Omega)[1]-1)){
         for(j in (i+1):dim(x$MC.values$Omega)[2]){
-          plot_mcmc(x$MC.values$Omega[i,j,],main=paste("Omega[",i,",",j,"]",sep=""),ylab=paste("Omega[",i,",",j,"]",sep=""),xlab="iteration")
+          plot_mcmc(x$MC.values$Omega[i,j,],main=paste("Omega[",i,",",j,"]",sep=""),ylab=paste("Omega[",i,",",j,"]",sep=""),xlab="Iteración")
         }
       }
       rm(i,j)
     }
     if( (is.element("all",chain.obj)|is.element("Lambda",chain.obj)) ) {
       for(j in 1:ncol(x$MC.values$Lambda)){
-        plot_mcmc(x$MC.values$Lambda[,j],main=paste("Lambda[",j,",",j,"]",sep=""),ylab=paste("Lambda[",j,",",j,"]",sep=""),xlab="iteration")
+        plot_mcmc(x$MC.values$Lambda[,j],main=paste("Lambda[",j,",",j,"]",sep=""),ylab=paste("Lambda[",j,",",j,"]",sep=""),xlab="Iteración")
       }
       rm(j)
     }
